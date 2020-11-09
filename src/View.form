@@ -26,7 +26,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="7ed01" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+              <component id="7ed01" class="javax.swing.JComboBox" binding="authorComboBox">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -43,7 +43,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="4b732" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+              <component id="4b732" class="javax.swing.JTextArea" binding="newEntryTextArea">
                 <constraints/>
                 <properties>
                   <font size="16"/>
@@ -97,7 +97,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="ec466" class="javax.swing.JTable" binding="table1" default-binding="true">
+              <component id="ec466" class="javax.swing.JTable" binding="entriesTable">
                 <constraints/>
                 <properties/>
               </component>
