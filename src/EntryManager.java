@@ -17,6 +17,17 @@ public class EntryManager {
         return users;
     }
 
+    public String[] getUserNames() {
+        ArrayList<User> users = this.getUsers();
+        String[] userNames = new String[users.size()];
+
+        for (int i = 0; i < users.size(); i++) {
+            userNames[i] = users.get(i).getName();
+        }
+
+        return userNames;
+    }
+
     public Entry createEntry(String content, User originalAuthor) {
         Entry entry = new Entry(content, originalAuthor);
         this.entries.add(entry);
