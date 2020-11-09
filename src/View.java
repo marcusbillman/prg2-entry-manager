@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class View {
     private JFrame frame;
@@ -29,7 +30,20 @@ public class View {
         createEntryButton.addActionListener(actionListener);
     }
 
-    // TODO: populateAuthorComboBox()
+    public void populateAuthorComboBox(ArrayList<User> authors) {
+        Object selectedItem = authorComboBox.getSelectedItem();
+
+        authorComboBox.removeAllItems();
+        for (User author : authors) {
+            authorComboBox.addItem(author.getName() + " (" + author.getId() + ")");
+        }
+
+        if (selectedItem != null) {
+            authorComboBox.setSelectedItem(selectedItem);
+        } else {
+            authorComboBox.setSelectedIndex(0);
+        }
+    }
 
     // TODO: populateEntriesTable()
 
