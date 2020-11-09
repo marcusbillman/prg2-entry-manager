@@ -25,7 +25,7 @@ public class View {
         return (String) authorComboBox.getSelectedItem();
     }
 
-    void addCreateEntryListener(ActionListener actionListener) {
+    public void addCreateEntryListener(ActionListener actionListener) {
         createEntryButton.addActionListener(actionListener);
     }
 

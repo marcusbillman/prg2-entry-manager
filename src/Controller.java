@@ -8,6 +8,8 @@ public class Controller {
     public Controller(EntryManager entryManager, View view) {
         this.entryManager = entryManager;
         this.view = view;
+
+        this.view.addCreateEntryListener(new CreateEntryListener());
     }
 
     private class CreateEntryListener implements ActionListener {
