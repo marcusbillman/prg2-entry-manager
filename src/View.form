@@ -101,7 +101,9 @@
             <children>
               <component id="ec466" class="javax.swing.JTable" binding="entriesTable">
                 <constraints/>
-                <properties/>
+                <properties>
+                  <autoCreateRowSorter value="true"/>
+                </properties>
               </component>
             </children>
           </scrollpane>
