@@ -38,7 +38,8 @@ public class Controller {
                     view.populateAuthorComboBox(entryManager.getUsers(), true);
                 }
 
-                Entry entry = entryManager.createEntry(view.getNewEntryContent(), authorUser);
+                entryManager.createEntry(view.getNewEntryContent(), authorUser);
+                view.populateEntriesTable(entryManager.getEntries());
             }
             catch (Exception ex) {
                 System.out.println(ex);
