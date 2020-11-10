@@ -35,7 +35,7 @@ public class Controller {
                     }
                 } else {
                     authorUser = entryManager.createUser(authorName);
-                    view.populateAuthorComboBox(entryManager.getUsers());
+                    view.populateAuthorComboBox(entryManager.getUsers(), true);
                 }
 
                 Entry entry = entryManager.createEntry(view.getNewEntryContent(), authorUser);

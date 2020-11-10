@@ -30,7 +30,7 @@ public class View {
         createEntryButton.addActionListener(actionListener);
     }
 
-    public void populateAuthorComboBox(ArrayList<User> authors) {
+    public void populateAuthorComboBox(ArrayList<User> authors, boolean selectLast) {
         Object selectedItem = authorComboBox.getSelectedItem();
 
         authorComboBox.removeAllItems();
@@ -38,7 +38,9 @@ public class View {
             authorComboBox.addItem(author.getName() + " (" + author.getId() + ")");
         }
 
-        if (selectedItem != null) {
+        if (selectLast) {
+            authorComboBox.setSelectedIndex(authorComboBox.getItemCount() - 1);
+        } else if (selectedItem != null) {
             authorComboBox.setSelectedItem(selectedItem);
         } else {
             authorComboBox.setSelectedIndex(0);
