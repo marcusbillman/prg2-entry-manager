@@ -17,7 +17,14 @@ public class Controller {
     private class CreateEntryListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
+                String entryContent = view.getNewEntryContent();
+                if (entryContent.length() < 1) throw new IllegalArgumentException("Entry content is empty");
+
                 String authorRaw = view.getAuthorName();
+                if (authorRaw == null || authorRaw.length() < 1) {
+                    throw new IllegalArgumentException("Author is empty");
+                }
+
                 String authorName = authorRaw.replaceAll(" \\(.*\\)", "");
                 int authorId = 0;
                 User authorUser;
@@ -31,17 +38,22 @@ public class Controller {
                 if (authorId != 0) {
                     authorUser = entryManager.getUserById(authorId);
                     if (authorUser == null) {
-                        throw new IllegalArgumentException("invalid user id");
+                        throw new IllegalArgumentException("Invalid user ID. Don't specify ID when creating user.");
                     }
                 } else {
                     authorUser = entryManager.createUser(authorName);
                     view.populateAuthorComboBox(entryManager.getUsers(), true);
                 }
 
+                if (!authorUser.getName().equals(authorName)) {
+                    throw new IllegalArgumentException("Entered author name doesn't match existing user");
+                }
+
                 entryManager.createEntry(view.getNewEntryContent(), authorUser);
                 view.populateEntriesTable(entryManager.getEntries());
             }
             catch (Exception ex) {
+                ex.printStackTrace();
                 view.displayErrorMessage(ex.getMessage(), "Error");
             }
         }
