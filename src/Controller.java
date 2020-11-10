@@ -42,8 +42,7 @@ public class Controller {
                 view.populateEntriesTable(entryManager.getEntries());
             }
             catch (Exception ex) {
-                System.out.println(ex);
-                view.displayErrorMessage("Oops! Something went wrong.", "Error");
+                view.displayErrorMessage(ex.getMessage(), "Error");
             }
         }
     }
