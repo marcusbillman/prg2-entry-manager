@@ -28,6 +28,14 @@ public class EntryManager {
         return userNames;
     }
 
+    public User getUserById(int id) {
+        ArrayList<User> users = this.getUsers();
+        for (User user : users) {
+            if (user.getId() == id) return user;
+        }
+        return null;
+    }
+
     public Entry createEntry(String content, User originalAuthor) {
         Entry entry = new Entry(content, originalAuthor);
         this.entries.add(entry);
