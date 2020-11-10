@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
@@ -15,6 +16,15 @@ public class View {
         frame.setContentPane(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+
+        DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel.addColumn("Content");
+        tableModel.addColumn("Original Author");
+        tableModel.addColumn("Creation Date");
+        tableModel.addColumn("Modification Date");
+        entriesTable.setModel(tableModel);
+        entriesTable.setDefaultEditor(Object.class, null); // Disable editing for the table
+
         frame.setVisible(true);
     }
 
@@ -47,7 +57,19 @@ public class View {
         }
     }
 
-    // TODO: populateEntriesTable()
+    public void populateEntriesTable(ArrayList<Entry> entries) {
+        DefaultTableModel tableModel = (DefaultTableModel) entriesTable.getModel();
+        tableModel.setRowCount(0);
+
+        for (Entry entry : entries) {
+            tableModel.addRow(new String[] {
+                    entry.getContent(),
+                    entry.getOriginalAuthor().getName() + " (" + entry.getOriginalAuthor().getId() + ")",
+                    entry.getCreationDate().toString(),
+                    entry.getModificationDate().toString()
+            });
+        }
+    }
 
     void displayErrorMessage(String message, String title) {
         JOptionPane.showMessageDialog(frame, message, title, JOptionPane.ERROR_MESSAGE);
