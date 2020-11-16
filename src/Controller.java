@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.Matcher;
@@ -56,7 +57,39 @@ public class Controller {
             }
             catch (Exception ex) {
                 ex.printStackTrace();
-                view.displayErrorMessage(ex.getMessage(), "Error");
+                view.showMessageDialog(ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private class SaveListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            try {
+                String fileName = "EntryManagerDump.obj";
+                FileIO.save(entryManager, fileName);
+                view.showMessageDialog("Saved state to file:\n" + fileName, "Saved",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch (Exception ex) {
+                ex.printStackTrace();
+                view.showMessageDialog(ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private class LoadListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            try {
+                String fileName = "EntryManagerDump.obj";
+                entryManager = FileIO.load(fileName);
+                view.populateEntriesTable(entryManager.getEntries());
+                view.populateAuthorComboBox(entryManager.getUsers(), false);
+                view.showMessageDialog("Loaded state from file:\n" + fileName, "Loaded",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch (Exception ex) {
+                ex.printStackTrace();
+                view.showMessageDialog(ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

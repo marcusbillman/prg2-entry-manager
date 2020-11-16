@@ -1,7 +1,7 @@
 import java.io.*;
 
 public class FileIO {
-    public void save(EntryManager entryManager, String fileName) throws IOException {
+    public static void save(EntryManager entryManager, String fileName) throws IOException {
         ObjectOutputStream out = null;
 
         try {
@@ -12,7 +12,7 @@ public class FileIO {
         }
     }
 
-    public EntryManager load(String fileName) throws IOException, ClassNotFoundException {
+    public static EntryManager load(String fileName) throws IOException, ClassNotFoundException {
         EntryManager entryManager;
 
         ObjectInputStream in = null;
