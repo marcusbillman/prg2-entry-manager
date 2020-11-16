@@ -10,6 +10,8 @@ public class View {
     private JTextArea newEntryTextArea;
     private JComboBox authorComboBox;
     private JTable entriesTable;
+    private JButton saveToFileButton;
+    private JButton loadFromFileButton;
 
     View(String title) {
         this.frame = new JFrame(title);
