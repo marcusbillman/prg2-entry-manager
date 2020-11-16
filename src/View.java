@@ -81,7 +81,7 @@ public class View {
         }
     }
 
-    void displayErrorMessage(String message, String title) {
-        JOptionPane.showMessageDialog(frame, message, title, JOptionPane.ERROR_MESSAGE);
+    void showMessageDialog(String message, String title, int messageType) {
+        JOptionPane.showMessageDialog(frame, message, title, messageType);
     }
 }
