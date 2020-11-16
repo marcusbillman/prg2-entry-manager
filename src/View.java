@@ -42,6 +42,14 @@ public class View {
         createEntryButton.addActionListener(actionListener);
     }
 
+    public void addSaveListener(ActionListener actionListener) {
+        saveToFileButton.addActionListener(actionListener);
+    }
+
+    public void addLoadListener(ActionListener actionListener) {
+        loadFromFileButton.addActionListener(actionListener);
+    }
+
     public void populateAuthorComboBox(ArrayList<User> authors, boolean selectLast) {
         Object selectedItem = authorComboBox.getSelectedItem();
 

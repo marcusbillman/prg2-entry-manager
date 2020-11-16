@@ -12,6 +12,8 @@ public class Controller {
         this.view = view;
 
         this.view.addCreateEntryListener(new CreateEntryListener());
+        this.view.addSaveListener(new SaveListener());
+        this.view.addLoadListener(new LoadListener());
     }
 
     private class CreateEntryListener implements ActionListener {
