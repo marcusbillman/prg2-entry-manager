@@ -54,6 +54,7 @@ public class Controller {
 
                 entryManager.createEntry(view.getNewEntryContent(), authorUser);
                 view.populateEntriesTable(entryManager.getEntries());
+                view.clearNewEntryContent();
             }
             catch (Exception ex) {
                 ex.printStackTrace();
@@ -84,6 +85,7 @@ public class Controller {
                 entryManager = FileIO.load(fileName);
                 view.populateEntriesTable(entryManager.getEntries());
                 view.populateAuthorComboBox(entryManager.getUsers(), "first");
+                view.clearNewEntryContent();
                 view.showMessageDialog("Loaded state from file:\n" + fileName, "Loaded",
                         JOptionPane.INFORMATION_MESSAGE);
             }

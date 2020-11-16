@@ -38,16 +38,8 @@ public class View {
         return (String) authorComboBox.getSelectedItem();
     }
 
-    public void addCreateEntryListener(ActionListener actionListener) {
-        createEntryButton.addActionListener(actionListener);
-    }
-
-    public void addSaveListener(ActionListener actionListener) {
-        saveToFileButton.addActionListener(actionListener);
-    }
-
-    public void addLoadListener(ActionListener actionListener) {
-        loadFromFileButton.addActionListener(actionListener);
+    public void clearNewEntryContent() {
+        newEntryTextArea.setText(null);
     }
 
     public void populateAuthorComboBox(ArrayList<User> authors, String select) {
@@ -85,5 +77,17 @@ public class View {
 
     void showMessageDialog(String message, String title, int messageType) {
         JOptionPane.showMessageDialog(frame, message, title, messageType);
+    }
+
+    public void addCreateEntryListener(ActionListener actionListener) {
+        createEntryButton.addActionListener(actionListener);
+    }
+
+    public void addSaveListener(ActionListener actionListener) {
+        saveToFileButton.addActionListener(actionListener);
+    }
+
+    public void addLoadListener(ActionListener actionListener) {
+        loadFromFileButton.addActionListener(actionListener);
     }
 }
