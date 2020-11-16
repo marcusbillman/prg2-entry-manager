@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Random;
 
-public class User {
+public class User implements Serializable {
     private String name;
     private int id;
 
