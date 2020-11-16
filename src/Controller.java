@@ -45,7 +45,7 @@ public class Controller {
                     }
                 } else {
                     authorUser = entryManager.createUser(authorName);
-                    view.populateAuthorComboBox(entryManager.getUsers(), true);
+                    view.populateAuthorComboBox(entryManager.getUsers(), "last");
                 }
 
                 if (!authorUser.getName().equals(authorName)) {
@@ -83,7 +83,7 @@ public class Controller {
                 String fileName = "EntryManagerDump.obj";
                 entryManager = FileIO.load(fileName);
                 view.populateEntriesTable(entryManager.getEntries());
-                view.populateAuthorComboBox(entryManager.getUsers(), false);
+                view.populateAuthorComboBox(entryManager.getUsers(), "first");
                 view.showMessageDialog("Loaded state from file:\n" + fileName, "Loaded",
                         JOptionPane.INFORMATION_MESSAGE);
             }

@@ -50,7 +50,7 @@ public class View {
         loadFromFileButton.addActionListener(actionListener);
     }
 
-    public void populateAuthorComboBox(ArrayList<User> authors, boolean selectLast) {
+    public void populateAuthorComboBox(ArrayList<User> authors, String select) {
         Object selectedItem = authorComboBox.getSelectedItem();
 
         authorComboBox.removeAllItems();
@@ -58,7 +58,9 @@ public class View {
             authorComboBox.addItem(author.getName() + " (" + author.getId() + ")");
         }
 
-        if (selectLast) {
+        if (select.equals("first")) {
+            authorComboBox.setSelectedIndex(0);
+        } else if (select.equals("last")) {
             authorComboBox.setSelectedIndex(authorComboBox.getItemCount() - 1);
         } else if (selectedItem != null) {
             authorComboBox.setSelectedItem(selectedItem);
