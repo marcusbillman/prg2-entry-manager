@@ -66,8 +66,15 @@ public class Controller {
     private class SaveListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
-                String fileName = "EntryManagerDump.obj";
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setDialogTitle("Save to file");
+
+                int userSelection = fileChooser.showSaveDialog(view.getFrame());
+                if (userSelection != JFileChooser.APPROVE_OPTION) return;
+                String fileName = fileChooser.getSelectedFile().getAbsolutePath();
+
                 FileIO.save(entryManager, fileName);
+
                 view.showMessageDialog("Saved state to file:\n" + fileName, "Saved",
                         JOptionPane.INFORMATION_MESSAGE);
             }
@@ -81,11 +88,18 @@ public class Controller {
     private class LoadListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
-                String fileName = "EntryManagerDump.obj";
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setDialogTitle("Load from file");
+
+                int userSelection = fileChooser.showOpenDialog(view.getFrame());
+                if (userSelection != JFileChooser.APPROVE_OPTION) return;
+                String fileName = fileChooser.getSelectedFile().getAbsolutePath();
+
                 entryManager = FileIO.load(fileName);
                 view.populateEntriesTable(entryManager.getEntries());
                 view.populateAuthorComboBox(entryManager.getUsers(), "first");
                 view.clearNewEntryContent();
+
                 view.showMessageDialog("Loaded state from file:\n" + fileName, "Loaded",
                         JOptionPane.INFORMATION_MESSAGE);
             }

@@ -30,6 +30,10 @@ public class View {
         frame.setVisible(true);
     }
 
+    public JFrame getFrame() {
+        return frame;
+    }
+
     public String getNewEntryContent() {
         return newEntryTextArea.getText();
     }
