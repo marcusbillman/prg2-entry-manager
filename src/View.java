@@ -83,6 +83,12 @@ public class View {
         JOptionPane.showMessageDialog(frame, message, title, messageType);
     }
 
+    String showInputDialog(String message, String title) {
+        String input = JOptionPane.showInputDialog(
+                frame, message, title, JOptionPane.QUESTION_MESSAGE);
+        return input;
+    }
+
     public void addCreateEntryListener(ActionListener actionListener) {
         createEntryButton.addActionListener(actionListener);
     }
