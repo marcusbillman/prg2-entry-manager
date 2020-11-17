@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class View {
@@ -99,5 +100,9 @@ public class View {
 
     public void addLoadListener(ActionListener actionListener) {
         loadFromFileButton.addActionListener(actionListener);
+    }
+
+    public void addTableClickListener(MouseListener mouseListener) {
+        entriesTable.addMouseListener(mouseListener);
     }
 }
