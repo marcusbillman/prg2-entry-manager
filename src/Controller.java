@@ -27,34 +27,7 @@ public class Controller {
                 String entryContent = view.getNewEntryContent();
                 if (entryContent.length() < 1) throw new IllegalArgumentException("Entry content is empty");
 
-                String authorRaw = view.getAuthorName();
-                if (authorRaw == null || authorRaw.length() < 1) {
-                    throw new IllegalArgumentException("Author is empty");
-                }
-
-                String authorName = authorRaw.replaceAll(" \\(.*\\)", "");
-                int authorId = 0;
-                User authorUser;
-
-                Pattern pattern = Pattern.compile("\\((.*?)\\)");
-                Matcher matcher = pattern.matcher(authorRaw);
-                if (matcher.find()) {
-                    authorId = Integer.parseInt(matcher.group(1));
-                }
-
-                if (authorId != 0) {
-                    authorUser = entryManager.getUserById(authorId);
-                    if (authorUser == null) {
-                        throw new IllegalArgumentException("Invalid user ID. Don't specify ID when creating user.");
-                    }
-                } else {
-                    authorUser = entryManager.createUser(authorName);
-                    view.populateAuthorComboBox(entryManager.getUsers(), "last");
-                }
-
-                if (!authorUser.getName().equals(authorName)) {
-                    throw new IllegalArgumentException("Entered author name doesn't match existing user");
-                }
+                User authorUser = parseAuthorUser();
 
                 entryManager.createEntry(view.getNewEntryContent(), authorUser);
                 view.populateEntriesTable(entryManager.getEntries());
@@ -128,34 +101,7 @@ public class Controller {
 
                 Entry entry = entryManager.getEntries().get(index);
 
-                String authorRaw = view.getAuthorName();
-                if (authorRaw == null || authorRaw.length() < 1) {
-                    throw new IllegalArgumentException("Author is empty");
-                }
-
-                String authorName = authorRaw.replaceAll(" \\(.*\\)", "");
-                int authorId = 0;
-                User authorUser;
-
-                Pattern pattern = Pattern.compile("\\((.*?)\\)");
-                Matcher matcher = pattern.matcher(authorRaw);
-                if (matcher.find()) {
-                    authorId = Integer.parseInt(matcher.group(1));
-                }
-
-                if (authorId != 0) {
-                    authorUser = entryManager.getUserById(authorId);
-                    if (authorUser == null) {
-                        throw new IllegalArgumentException("Invalid user ID. Don't specify ID when creating user.");
-                    }
-                } else {
-                    authorUser = entryManager.createUser(authorName);
-                    view.populateAuthorComboBox(entryManager.getUsers(), "last");
-                }
-
-                if (!authorUser.getName().equals(authorName)) {
-                    throw new IllegalArgumentException("Entered author name doesn't match existing user");
-                }
+                User authorUser = parseAuthorUser();
 
                 entry.modify(newContent, authorUser);
                 view.populateEntriesTable(entryManager.getEntries());
@@ -178,5 +124,38 @@ public class Controller {
         public void mouseExited(MouseEvent mouseEvent) {
 
         }
+    }
+
+    private User parseAuthorUser() {
+        String authorRaw = view.getAuthorName();
+        if (authorRaw == null || authorRaw.length() < 1) {
+            throw new IllegalArgumentException("Author is empty");
+        }
+
+        String authorName = authorRaw.replaceAll(" \\(.*\\)", "");
+        int authorId = 0;
+        User authorUser;
+
+        Pattern pattern = Pattern.compile("\\((.*?)\\)");
+        Matcher matcher = pattern.matcher(authorRaw);
+        if (matcher.find()) {
+            authorId = Integer.parseInt(matcher.group(1));
+        }
+
+        if (authorId != 0) {
+            authorUser = entryManager.getUserById(authorId);
+            if (authorUser == null) {
+                throw new IllegalArgumentException("Invalid user ID. Don't specify ID when creating user.");
+            }
+        } else {
+            authorUser = entryManager.createUser(authorName);
+            view.populateAuthorComboBox(entryManager.getUsers(), "last");
+        }
+
+        if (!authorUser.getName().equals(authorName)) {
+            throw new IllegalArgumentException("Entered author name doesn't match existing user");
+        }
+
+        return authorUser;
     }
 }
