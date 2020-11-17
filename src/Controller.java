@@ -89,23 +89,29 @@ public class Controller {
 
     private class TableClickListener implements MouseListener {
         public void mouseClicked(MouseEvent mouseEvent) {
-            JTable table = (JTable) mouseEvent.getSource();
-            Point point = mouseEvent.getPoint();
-            int index = table.rowAtPoint(point);
+            try {
+                JTable table = (JTable) mouseEvent.getSource();
+                Point point = mouseEvent.getPoint();
+                int index = table.rowAtPoint(point);
 
-            if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
-                String newContent = view.showInputDialog("Entry Content", "Modify Entry");
+                if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
+                    String newContent = view.showInputDialog("Entry Content", "Modify Entry");
 
-                if (newContent == null) return;
-                if (newContent.length() < 1) throw new IllegalArgumentException("Entry content is empty");
+                    if (newContent == null) return;
+                    if (newContent.length() < 1) throw new IllegalArgumentException("Entry content is empty");
 
-                Entry entry = entryManager.getEntries().get(index);
+                    Entry entry = entryManager.getEntries().get(index);
 
-                User authorUser = parseAuthorUser();
+                    User authorUser = parseAuthorUser();
 
-                entry.modify(newContent, authorUser);
-                view.populateEntriesTable(entryManager.getEntries());
-                view.clearNewEntryContent();
+                    entry.modify(newContent, authorUser);
+                    view.populateEntriesTable(entryManager.getEntries());
+                    view.clearNewEntryContent();
+                }
+            }
+            catch (Exception ex) {
+                ex.printStackTrace();
+                view.showMessageDialog(ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
 
