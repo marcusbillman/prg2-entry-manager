@@ -19,6 +19,28 @@ public class DatabaseIO {
 
     }
 
+    public void insertEntry(Entry entry) {
+        try {
+            // Create template query
+            String query = "INSERT INTO entries " +
+                    "(original_author_id, content, modification_date, creation_date) " +
+                    "VALUES (?, ?, ?, ?)";
+
+            // Setup and populate statement
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1, entry.getOriginalAuthor().getId());
+            preparedStatement.setString(2, entry.getContent());
+            preparedStatement.setTimestamp(3, entry.getModificationDate());
+            preparedStatement.setTimestamp(4, entry.getCreationDate());
+            preparedStatement.execute();
+
+            preparedStatement.close();
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public EntryManager load() {
         EntryManager entryManager = null;
 

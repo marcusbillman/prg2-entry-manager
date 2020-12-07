@@ -31,9 +31,11 @@ public class Controller {
 
                 User authorUser = parseAuthorUser();
 
-                entryManager.createEntry(view.getNewEntryContent(), authorUser);
+                Entry entry = entryManager.createEntry(view.getNewEntryContent(), authorUser);
                 view.populateEntriesTable(entryManager.getEntries());
                 view.clearNewEntryContent();
+
+                if (databaseIO != null) databaseIO.insertEntry(entry);
             }
             catch (Exception ex) {
                 ex.printStackTrace();
