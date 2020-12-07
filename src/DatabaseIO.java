@@ -41,6 +41,26 @@ public class DatabaseIO {
         }
     }
 
+    public void insertAuthor(User author) {
+        try {
+            // Create template query
+            String query = "INSERT INTO authors " +
+                    "(author_id, author_name) " +
+                    "VALUES (?, ?)";
+
+            // Setup and populate statement
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1, author.getId());
+            preparedStatement.setString(2, author.getName());
+            preparedStatement.execute();
+
+            preparedStatement.close();
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public EntryManager load() {
         EntryManager entryManager = null;
 

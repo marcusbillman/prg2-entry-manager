@@ -160,6 +160,8 @@ public class Controller {
         } else {
             authorUser = entryManager.createUser(authorName);
             view.populateAuthorComboBox(entryManager.getUsers(), "last");
+
+            if (databaseIO != null) databaseIO.insertAuthor(authorUser);
         }
 
         if (!authorUser.getName().equals(authorName)) {
