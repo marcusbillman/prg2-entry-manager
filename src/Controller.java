@@ -10,10 +10,12 @@ import java.util.regex.Pattern;
 public class Controller {
     private View view;
     private EntryManager entryManager;
+    private DatabaseIO databaseIO;
 
-    public Controller(EntryManager entryManager, View view) {
+    public Controller(EntryManager entryManager, View view, boolean useDatabase) {
         this.entryManager = entryManager;
         this.view = view;
+        if (useDatabase) this.databaseIO = new DatabaseIO();
 
         this.view.addCreateEntryListener(new CreateEntryListener());
         this.view.addSaveListener(new SaveListener());
