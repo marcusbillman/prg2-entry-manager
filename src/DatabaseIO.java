@@ -83,7 +83,28 @@ public class DatabaseIO {
     }
 
     public EntryManager load() {
-        EntryManager entryManager = null;
+        EntryManager entryManager = new EntryManager();
+
+        try {
+            // Setup statement
+            Statement statement = connection.createStatement();
+
+            // Create and execute query
+            String query = "SELECT * FROM authors";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            // Loop through the result set and create users in entryManager
+            while (resultSet.next()) {
+                int id = resultSet.getInt("author_id");
+                String name = resultSet.getString("author_name");
+
+                entryManager.createUser(name, id);
+            }
+
+            statement.close();
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
 
         try {
             // Setup statement
@@ -93,10 +114,17 @@ public class DatabaseIO {
             String query = "SELECT * FROM entries";
             ResultSet resultSet = statement.executeQuery(query);
 
-            // Loop through the result set and print
+            // Loop through the result set and create entries in entryManager
             while (resultSet.next()) {
-                String body = resultSet.getString("content");
-                System.out.println(body);
+                int id = resultSet.getInt("entry_id");
+                int originalAuthorId = resultSet.getInt("original_author_id");
+                String content = resultSet.getString("content");
+                Timestamp modificationDate = resultSet.getTimestamp("modification_date");
+                Timestamp creationDate = resultSet.getTimestamp("creation_date");
+
+                User authorUser = entryManager.getUserById(originalAuthorId);
+
+                entryManager.createEntry(content, authorUser, id, modificationDate, creationDate);
             }
 
             statement.close();
