@@ -23,16 +23,17 @@ public class DatabaseIO {
         try {
             // Create template query
             String query = "INSERT INTO entries " +
-                    "(original_author_id, content, modification_date, creation_date) " +
-                    "VALUES (?, ?, ?, ?)";
+                    "(entry_id, original_author_id, content, modification_date, creation_date) " +
+                    "VALUES (?, ?, ?, ?, ?)";
 
             // Setup and populate statement
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.setInt(1, entry.getOriginalAuthor().getId());
-            preparedStatement.setString(2, entry.getContent());
-            preparedStatement.setTimestamp(3, entry.getModificationDate());
-            preparedStatement.setTimestamp(4, entry.getCreationDate());
+            preparedStatement.setInt(1, entry.getId());
+            preparedStatement.setInt(2, entry.getOriginalAuthor().getId());
+            preparedStatement.setString(3, entry.getContent());
+            preparedStatement.setTimestamp(4, entry.getModificationDate());
+            preparedStatement.setTimestamp(5, entry.getCreationDate());
             preparedStatement.execute();
 
             preparedStatement.close();
