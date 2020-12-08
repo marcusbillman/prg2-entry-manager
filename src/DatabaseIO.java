@@ -62,6 +62,26 @@ public class DatabaseIO {
         }
     }
 
+    public void updateEntry(Entry entry, String newContent) {
+        try {
+            // Create template query
+            String query = "UPDATE entries " +
+                    "SET content=?, modification_date=now() " +
+                    "WHERE entry_id=?";
+
+            // Setup and populate statement
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, newContent);
+            preparedStatement.setInt(2, entry.getId());
+            preparedStatement.execute();
+
+            preparedStatement.close();
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public EntryManager load() {
         EntryManager entryManager = null;
 

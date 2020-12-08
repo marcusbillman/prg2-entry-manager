@@ -111,6 +111,8 @@ public class Controller {
                     entry.modify(newContent, authorUser);
                     view.populateEntriesTable(entryManager.getEntries());
                     view.clearNewEntryContent();
+
+                    if (databaseIO != null) databaseIO.updateEntry(entry, newContent);
                 }
             }
             catch (Exception ex) {
