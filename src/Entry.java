@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Entry implements Serializable {
     private String content;
@@ -9,19 +10,23 @@ public class Entry implements Serializable {
     private Timestamp creationDate;
     private Timestamp modificationDate;
     private ArrayList<Modification> modifications;
+    private int id;
 
     public Entry(String content, User originalAuthor) {
         this.originalAuthor = originalAuthor;
         this.modifications = new ArrayList<>();
         this.modify(content, originalAuthor);
         this.creationDate = this.modifications.get(0).getDate();
+        this.id = generateID(6);
     }
 
     public void modify(String newContent, User author) {
         this.content = newContent;
 
         Timestamp now = Timestamp.from(Instant.now());
-        this.modifications.add(new Modification(author, now));
+
+        Modification modification = new Modification(author, now);
+        this.modifications.add(modification);
 
         this.updateModificationDate();
     }
@@ -49,5 +54,17 @@ public class Entry implements Serializable {
 
     public ArrayList<Modification> getModifications() {
         return modifications;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    private int generateID(int length) {
+        int min = (int) Math.pow(10, length - 1);
+        int max = (int) Math.pow(10, length) - 1;
+
+        Random r = new Random();
+        return r.nextInt((max - min) + 1) + min;
     }
 }
