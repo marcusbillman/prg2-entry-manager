@@ -12,6 +12,15 @@ public class Entry implements Serializable {
     private ArrayList<Modification> modifications;
     private int id;
 
+    public Entry(String content, User originalAuthor, int id, Timestamp modificationDate, Timestamp creationDate) {
+        this.originalAuthor = originalAuthor;
+        this.modifications = new ArrayList<>();
+        this.modify(content, originalAuthor);
+        this.modificationDate = modificationDate;
+        this.creationDate = creationDate;
+        this.id = id;
+    }
+
     public Entry(String content, User originalAuthor) {
         this.originalAuthor = originalAuthor;
         this.modifications = new ArrayList<>();
