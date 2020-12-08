@@ -21,6 +21,16 @@ public class Controller {
         this.view.addSaveListener(new SaveListener());
         this.view.addLoadListener(new LoadListener());
         this.view.addTableClickListener(new TableClickListener());
+
+        if (databaseIO != null) {
+            entryManager = databaseIO.load();
+            view.populateEntriesTable(entryManager.getEntries());
+            view.populateAuthorComboBox(entryManager.getUsers(), "first");
+            view.clearNewEntryContent();
+
+            view.showMessageDialog("Loaded state from database", "Loaded",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     private class CreateEntryListener implements ActionListener {
