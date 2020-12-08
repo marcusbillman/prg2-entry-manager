@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class EntryManager implements Serializable {
@@ -37,10 +38,22 @@ public class EntryManager implements Serializable {
         return null;
     }
 
+    public Entry createEntry(String content, User originalAuthor, int id, Timestamp modificationDate, Timestamp creationDate) {
+        Entry entry = new Entry(content, originalAuthor, id, modificationDate, creationDate);
+        this.entries.add(entry);
+        return entry;
+    }
+
     public Entry createEntry(String content, User originalAuthor) {
         Entry entry = new Entry(content, originalAuthor);
         this.entries.add(entry);
         return entry;
+    }
+
+    public User createUser(String name, int id) {
+        User user = new User(name, id);
+        this.users.add(user);
+        return user;
     }
 
     public User createUser(String name) {
