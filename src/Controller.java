@@ -23,12 +23,18 @@ public class Controller {
         this.view.addTableClickListener(new TableClickListener());
 
         if (databaseIO != null) {
-            entryManager = databaseIO.load();
-            view.populateEntriesTable(entryManager.getEntries());
-            view.populateAuthorComboBox(entryManager.getUsers(), "first");
-            view.clearNewEntryContent();
+            try {
+                this.entryManager = databaseIO.load();
+            }
+            catch (Exception ex) {
+                view.showMessageDialog(
+                        "Couldn't load data from database. This session will only use manual file storage.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            this.view.populateEntriesTable(this.entryManager.getEntries());
+            this.view.populateAuthorComboBox(this.entryManager.getUsers(), "first");
 
-            view.showMessageDialog("Loaded state from database", "Loaded",
+            this.view.showMessageDialog("Loaded state from database", "Loaded",
                     JOptionPane.INFORMATION_MESSAGE);
         }
     }
