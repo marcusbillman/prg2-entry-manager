@@ -1,7 +1,6 @@
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Entry implements Serializable {
@@ -9,40 +8,32 @@ public class Entry implements Serializable {
     private User originalAuthor;
     private Timestamp creationDate;
     private Timestamp modificationDate;
-    private ArrayList<Modification> modifications;
     private int id;
 
     public Entry(String content, User originalAuthor, int id, Timestamp modificationDate, Timestamp creationDate) {
+        this.content = content;
         this.originalAuthor = originalAuthor;
-        this.modifications = new ArrayList<>();
-        this.modify(content, originalAuthor);
         this.modificationDate = modificationDate;
         this.creationDate = creationDate;
         this.id = id;
     }
 
     public Entry(String content, User originalAuthor) {
+        this.content = content;
         this.originalAuthor = originalAuthor;
-        this.modifications = new ArrayList<>();
-        this.modify(content, originalAuthor);
-        this.creationDate = this.modifications.get(0).getDate();
+
+        Timestamp now = Timestamp.from(Instant.now());
+        this.creationDate = now;
+        this.modificationDate = now;
+
         this.id = generateID(6);
     }
 
-    public void modify(String newContent, User author) {
+    public void modify(String newContent) {
         this.content = newContent;
 
         Timestamp now = Timestamp.from(Instant.now());
-
-        Modification modification = new Modification(author, now);
-        this.modifications.add(modification);
-
-        this.updateModificationDate();
-    }
-
-    public void updateModificationDate() {
-        Modification latestModification = this.modifications.get(modifications.size() - 1);
-        this.modificationDate = latestModification.getDate();
+        this.modificationDate = now;
     }
 
     public String getContent() {
@@ -59,10 +50,6 @@ public class Entry implements Serializable {
 
     public Timestamp getModificationDate() {
         return modificationDate;
-    }
-
-    public ArrayList<Modification> getModifications() {
-        return modifications;
     }
 
     public int getId() {
