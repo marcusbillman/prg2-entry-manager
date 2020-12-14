@@ -30,9 +30,14 @@ public class Controller {
                 view.showMessageDialog(
                         "Couldn't load data from database. This session will only use manual file storage.",
                         "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
-            this.view.populateEntriesTable(this.entryManager.getEntries());
-            this.view.populateAuthorComboBox(this.entryManager.getUsers(), "first");
+
+            try {
+                this.view.populateEntriesTable(this.entryManager.getEntries());
+                this.view.populateAuthorComboBox(this.entryManager.getUsers(), "first");
+            }
+            catch (IllegalArgumentException ex) { }
 
             this.view.showMessageDialog("Loaded state from database", "Loaded",
                     JOptionPane.INFORMATION_MESSAGE);
