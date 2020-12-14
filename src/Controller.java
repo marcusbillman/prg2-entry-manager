@@ -128,9 +128,7 @@ public class Controller {
 
                     Entry entry = entryManager.getEntries().get(index);
 
-                    User authorUser = parseAuthorUser();
-
-                    entry.modify(newContent, authorUser);
+                    entry.modify(newContent);
                     view.populateEntriesTable(entryManager.getEntries());
                     view.clearNewEntryContent();
 
