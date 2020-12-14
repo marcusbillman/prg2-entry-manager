@@ -30,6 +30,7 @@ public class Controller {
                 view.showMessageDialog(
                         "Couldn't load data from database. This session will only use manual file storage.",
                         "Error", JOptionPane.ERROR_MESSAGE);
+                this.databaseIO = null;
                 return;
             }
 
