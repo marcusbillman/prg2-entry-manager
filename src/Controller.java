@@ -121,12 +121,13 @@ public class Controller {
                 int index = table.rowAtPoint(point);
 
                 if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
-                    String newContent = view.showInputDialog("Entry Content", "Modify Entry");
+                    Entry entry = entryManager.getEntries().get(index);
+
+                    String newContent = view.showInputDialog("Entry Content", "Modify Entry",
+                            entry.getContent());
 
                     if (newContent == null) return;
                     if (newContent.length() < 1) throw new IllegalArgumentException("Entry content is empty");
-
-                    Entry entry = entryManager.getEntries().get(index);
 
                     entry.modify(newContent);
                     view.populateEntriesTable(entryManager.getEntries());
