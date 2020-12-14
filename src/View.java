@@ -84,9 +84,9 @@ public class View {
         JOptionPane.showMessageDialog(frame, message, title, messageType);
     }
 
-    String showInputDialog(String message, String title) {
-        String input = JOptionPane.showInputDialog(
-                frame, message, title, JOptionPane.QUESTION_MESSAGE);
+    String showInputDialog(String message, String title, String initialValue) {
+        String input = (String) JOptionPane.showInputDialog(
+                frame, message, title, JOptionPane.QUESTION_MESSAGE, null, null, initialValue);
         return input;
     }
 
