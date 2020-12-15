@@ -46,7 +46,7 @@ public class DatabaseIO {
         try {
             // Create template query
             String query = "INSERT INTO authors " +
-                    "(author_id, author_name) " +
+                    "(author_id, name) " +
                     "VALUES (?, ?)";
 
             // Setup and populate statement
