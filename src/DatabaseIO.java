@@ -97,7 +97,7 @@ public class DatabaseIO {
             // Loop through the result set and create users in entryManager
             while (resultSet.next()) {
                 int id = resultSet.getInt("author_id");
-                String name = resultSet.getString("author_name");
+                String name = resultSet.getString("name");
 
                 entryManager.createUser(name, id);
             }
