@@ -10,7 +10,7 @@ public class DatabaseIO {
                     "jdbc:mysql://" + DatabaseLoginData.address + ":" + DatabaseLoginData.port + "/" + DatabaseLoginData.database +
                             "? allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC",
                     DatabaseLoginData.username, DatabaseLoginData.password);
-        } catch(SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
@@ -37,7 +37,7 @@ public class DatabaseIO {
             preparedStatement.execute();
 
             preparedStatement.close();
-        } catch(SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
@@ -57,7 +57,7 @@ public class DatabaseIO {
             preparedStatement.execute();
 
             preparedStatement.close();
-        } catch(SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
@@ -78,7 +78,7 @@ public class DatabaseIO {
             preparedStatement.execute();
 
             preparedStatement.close();
-        } catch(SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
@@ -103,7 +103,7 @@ public class DatabaseIO {
             }
 
             statement.close();
-        } catch(SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
@@ -129,7 +129,7 @@ public class DatabaseIO {
             }
 
             statement.close();
-        } catch(SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
 

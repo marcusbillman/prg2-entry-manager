@@ -25,8 +25,7 @@ public class Controller {
         if (databaseIO != null) {
             try {
                 this.entryManager = databaseIO.load();
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 view.showMessageDialog(
                         "Couldn't load data from database. This session will only use manual file storage.",
                         "Error", JOptionPane.ERROR_MESSAGE);
@@ -37,8 +36,8 @@ public class Controller {
             try {
                 this.view.populateEntriesTable(this.entryManager.getEntries());
                 this.view.populateAuthorComboBox(this.entryManager.getUsers(), "first");
+            } catch (IllegalArgumentException ignored) {
             }
-            catch (IllegalArgumentException ignored) { }
 
             this.view.showMessageDialog("Loaded state from database", "Loaded",
                     JOptionPane.INFORMATION_MESSAGE);
@@ -58,8 +57,7 @@ public class Controller {
                 view.clearNewEntryContent();
 
                 if (databaseIO != null) databaseIO.insertEntry(entry);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
                 view.showMessageDialog(ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -80,8 +78,7 @@ public class Controller {
 
                 view.showMessageDialog("Saved state to file:\n" + fileName, "Saved",
                         JOptionPane.INFORMATION_MESSAGE);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
                 view.showMessageDialog(ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -105,8 +102,7 @@ public class Controller {
 
                 view.showMessageDialog("Loaded state from file:\n" + fileName, "Loaded",
                         JOptionPane.INFORMATION_MESSAGE);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
                 view.showMessageDialog(ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -135,27 +131,22 @@ public class Controller {
 
                     if (databaseIO != null) databaseIO.updateEntry(entry);
                 }
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
                 view.showMessageDialog(ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
 
         public void mousePressed(MouseEvent mouseEvent) {
-
         }
 
         public void mouseReleased(MouseEvent mouseEvent) {
-
         }
 
         public void mouseEntered(MouseEvent mouseEvent) {
-
         }
 
         public void mouseExited(MouseEvent mouseEvent) {
-
         }
     }
 

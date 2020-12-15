@@ -71,7 +71,7 @@ public class View {
         tableModel.setRowCount(0);
 
         for (Entry entry : entries) {
-            tableModel.addRow(new String[] {
+            tableModel.addRow(new String[]{
                     entry.getContent(),
                     entry.getAuthor().getName() + " (" + entry.getAuthor().getId() + ")",
                     entry.getCreationDate().toString(),
