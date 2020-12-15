@@ -133,7 +133,7 @@ public class Controller {
                     view.populateEntriesTable(entryManager.getEntries());
                     view.clearNewEntryContent();
 
-                    if (databaseIO != null) databaseIO.updateEntry(entry, newContent);
+                    if (databaseIO != null) databaseIO.updateEntry(entry);
                 }
             }
             catch (Exception ex) {

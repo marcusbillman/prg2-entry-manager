@@ -62,18 +62,19 @@ public class DatabaseIO {
         }
     }
 
-    public void updateEntry(Entry entry, String newContent) {
+    public void updateEntry(Entry entry) {
         try {
             // Create template query
             String query = "UPDATE entries " +
-                    "SET content=?, modification_date=now() " +
+                    "SET content=?, modification_date=? " +
                     "WHERE entry_id=?";
 
             // Setup and populate statement
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.setString(1, newContent);
-            preparedStatement.setInt(2, entry.getId());
+            preparedStatement.setString(1, entry.getContent());
+            preparedStatement.setTimestamp(2, entry.getModificationDate());
+            preparedStatement.setInt(3, entry.getId());
             preparedStatement.execute();
 
             preparedStatement.close();
