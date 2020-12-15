@@ -5,7 +5,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class View {
-    private JFrame frame;
+    private final JFrame frame;
     private JPanel panel;
     private JButton createEntryButton;
     private JTextArea newEntryTextArea;
@@ -85,9 +85,8 @@ public class View {
     }
 
     String showInputDialog(String message, String title, String initialValue) {
-        String input = (String) JOptionPane.showInputDialog(
+        return (String) JOptionPane.showInputDialog(
                 frame, message, title, JOptionPane.QUESTION_MESSAGE, null, null, initialValue);
-        return input;
     }
 
     public void addCreateEntryListener(ActionListener actionListener) {

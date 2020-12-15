@@ -3,8 +3,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class EntryManager implements Serializable {
-    private ArrayList<Entry> entries;
-    private ArrayList<User> users;
+    private final ArrayList<Entry> entries;
+    private final ArrayList<User> users;
 
     public EntryManager() {
         this.entries = new ArrayList<>();
@@ -17,17 +17,6 @@ public class EntryManager implements Serializable {
 
     public ArrayList<User> getUsers() {
         return users;
-    }
-
-    public String[] getUserNames() {
-        ArrayList<User> users = this.getUsers();
-        String[] userNames = new String[users.size()];
-
-        for (int i = 0; i < users.size(); i++) {
-            userNames[i] = users.get(i).getName();
-        }
-
-        return userNames;
     }
 
     public User getUserById(int id) {

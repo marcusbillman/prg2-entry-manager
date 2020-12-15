@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Controller {
-    private View view;
+    private final View view;
     private EntryManager entryManager;
     private DatabaseIO databaseIO;
 
@@ -38,7 +38,7 @@ public class Controller {
                 this.view.populateEntriesTable(this.entryManager.getEntries());
                 this.view.populateAuthorComboBox(this.entryManager.getUsers(), "first");
             }
-            catch (IllegalArgumentException ex) { }
+            catch (IllegalArgumentException ignored) { }
 
             this.view.showMessageDialog("Loaded state from database", "Loaded",
                     JOptionPane.INFORMATION_MESSAGE);

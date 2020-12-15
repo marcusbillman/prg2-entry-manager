@@ -5,10 +5,10 @@ import java.util.Random;
 
 public class Entry implements Serializable {
     private String content;
-    private User author;
-    private Timestamp creationDate;
+    private final User author;
+    private final Timestamp creationDate;
     private Timestamp modificationDate;
-    private int id;
+    private final int id;
 
     public Entry(String content, User author, int id, Timestamp modificationDate, Timestamp creationDate) {
         this.content = content;
@@ -31,9 +31,7 @@ public class Entry implements Serializable {
 
     public void modify(String newContent) {
         this.content = newContent;
-
-        Timestamp now = Timestamp.from(Instant.now());
-        this.modificationDate = now;
+        this.modificationDate = Timestamp.from(Instant.now());
     }
 
     public String getContent() {
