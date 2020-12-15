@@ -22,7 +22,7 @@ public class View {
 
         DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.addColumn("Content");
-        tableModel.addColumn("Original Author");
+        tableModel.addColumn("Author");
         tableModel.addColumn("Creation Date");
         tableModel.addColumn("Modification Date");
         entriesTable.setModel(tableModel);
@@ -73,7 +73,7 @@ public class View {
         for (Entry entry : entries) {
             tableModel.addRow(new String[] {
                     entry.getContent(),
-                    entry.getOriginalAuthor().getName() + " (" + entry.getOriginalAuthor().getId() + ")",
+                    entry.getAuthor().getName() + " (" + entry.getAuthor().getId() + ")",
                     entry.getCreationDate().toString(),
                     entry.getModificationDate().toString()
             });

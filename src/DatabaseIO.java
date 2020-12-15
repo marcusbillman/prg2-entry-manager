@@ -23,14 +23,14 @@ public class DatabaseIO {
         try {
             // Create template query
             String query = "INSERT INTO entries " +
-                    "(entry_id, original_author_id, content, modification_date, creation_date) " +
+                    "(entry_id, author_id, content, modification_date, creation_date) " +
                     "VALUES (?, ?, ?, ?, ?)";
 
             // Setup and populate statement
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setInt(1, entry.getId());
-            preparedStatement.setInt(2, entry.getOriginalAuthor().getId());
+            preparedStatement.setInt(2, entry.getAuthor().getId());
             preparedStatement.setString(3, entry.getContent());
             preparedStatement.setTimestamp(4, entry.getModificationDate());
             preparedStatement.setTimestamp(5, entry.getCreationDate());
@@ -118,12 +118,12 @@ public class DatabaseIO {
             // Loop through the result set and create entries in entryManager
             while (resultSet.next()) {
                 int id = resultSet.getInt("entry_id");
-                int originalAuthorId = resultSet.getInt("original_author_id");
+                int authorId = resultSet.getInt("author_id");
                 String content = resultSet.getString("content");
                 Timestamp modificationDate = resultSet.getTimestamp("modification_date");
                 Timestamp creationDate = resultSet.getTimestamp("creation_date");
 
-                User authorUser = entryManager.getUserById(originalAuthorId);
+                User authorUser = entryManager.getUserById(authorId);
 
                 entryManager.createEntry(content, authorUser, id, modificationDate, creationDate);
             }

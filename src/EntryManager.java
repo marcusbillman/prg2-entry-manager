@@ -38,14 +38,14 @@ public class EntryManager implements Serializable {
         return null;
     }
 
-    public Entry createEntry(String content, User originalAuthor, int id, Timestamp modificationDate, Timestamp creationDate) {
-        Entry entry = new Entry(content, originalAuthor, id, modificationDate, creationDate);
+    public Entry createEntry(String content, User author, int id, Timestamp modificationDate, Timestamp creationDate) {
+        Entry entry = new Entry(content, author, id, modificationDate, creationDate);
         this.entries.add(entry);
         return entry;
     }
 
-    public Entry createEntry(String content, User originalAuthor) {
-        Entry entry = new Entry(content, originalAuthor);
+    public Entry createEntry(String content, User author) {
+        Entry entry = new Entry(content, author);
         this.entries.add(entry);
         return entry;
     }

@@ -5,22 +5,22 @@ import java.util.Random;
 
 public class Entry implements Serializable {
     private String content;
-    private User originalAuthor;
+    private User author;
     private Timestamp creationDate;
     private Timestamp modificationDate;
     private int id;
 
-    public Entry(String content, User originalAuthor, int id, Timestamp modificationDate, Timestamp creationDate) {
+    public Entry(String content, User author, int id, Timestamp modificationDate, Timestamp creationDate) {
         this.content = content;
-        this.originalAuthor = originalAuthor;
+        this.author = author;
         this.modificationDate = modificationDate;
         this.creationDate = creationDate;
         this.id = id;
     }
 
-    public Entry(String content, User originalAuthor) {
+    public Entry(String content, User author) {
         this.content = content;
-        this.originalAuthor = originalAuthor;
+        this.author = author;
 
         Timestamp now = Timestamp.from(Instant.now());
         this.creationDate = now;
@@ -40,8 +40,8 @@ public class Entry implements Serializable {
         return content;
     }
 
-    public User getOriginalAuthor() {
-        return originalAuthor;
+    public User getAuthor() {
+        return author;
     }
 
     public Timestamp getCreationDate() {
