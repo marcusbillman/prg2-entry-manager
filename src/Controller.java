@@ -1,9 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,6 +18,31 @@ public class Controller {
         this.view.addSaveListener(new SaveListener());
         this.view.addLoadListener(new LoadListener());
         this.view.addTableClickListener(new TableClickListener());
+        this.view.addCloseListener(new WindowListener() {
+            public void windowOpened(WindowEvent e) {
+            }
+
+            public void windowClosing(WindowEvent e) {
+                databaseIO.closeConnection();
+                System.out.println("Bye!");
+                view.getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            }
+
+            public void windowClosed(WindowEvent e) {
+            }
+
+            public void windowIconified(WindowEvent e) {
+            }
+
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            public void windowActivated(WindowEvent e) {
+            }
+
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
 
         if (databaseIO != null) {
             try {

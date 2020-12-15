@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 public class View {
@@ -17,7 +18,7 @@ public class View {
     View(String title) {
         this.frame = new JFrame(title);
         frame.setContentPane(panel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.pack();
 
         DefaultTableModel tableModel = new DefaultTableModel();
@@ -103,5 +104,9 @@ public class View {
 
     public void addTableClickListener(MouseListener mouseListener) {
         entriesTable.addMouseListener(mouseListener);
+    }
+
+    public void addCloseListener(WindowListener windowListener) {
+        frame.addWindowListener(windowListener);
     }
 }
