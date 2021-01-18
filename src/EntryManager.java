@@ -36,7 +36,7 @@ public class EntryManager implements Serializable {
 
     /**
      * Gets the User that has a given id.
-     * @param id - id to search for
+     * @param id id to search for
      * @return User with given id, or null if no user was found
      */
     public User getUserById(int id) {
@@ -50,11 +50,11 @@ public class EntryManager implements Serializable {
     /**
      * Creates an entry and appends it to the ArrayList. This method takes all attributes of Entry, and thus, is only
      * called by DatabaseIO when restoring state from the database.
-     * @param content - content of the entry
-     * @param author - author (User) of the entry
-     * @param id - id of the entry (for use in database)
-     * @param modificationDate - modification date of the entry
-     * @param creationDate - creation date of the entry
+     * @param content content of the entry
+     * @param author author (User) of the entry
+     * @param id id of the entry (for use in database)
+     * @param modificationDate modification date of the entry
+     * @param creationDate creation date of the entry
      * @return the newly created Entry
      */
     public Entry createEntry(String content, User author, int id, Timestamp modificationDate, Timestamp creationDate) {
@@ -66,8 +66,8 @@ public class EntryManager implements Serializable {
     /**
      * Creates an entry and appends it to the ArrayList. Uses a random id, and the current time as modification date and
      * creation date.
-     * @param content - content of the entry
-     * @param author - author of the entry
+     * @param content content of the entry
+     * @param author author of the entry
      * @return the newly created Entry
      */
     public Entry createEntry(String content, User author) {
@@ -79,8 +79,8 @@ public class EntryManager implements Serializable {
     /**
      * Creates a user and appends it to the ArrayList. This method takes all attributes of Entry, and thus, is only
      * called by DatabaseIO when restoring state from the database.
-     * @param name - name of the user
-     * @param id - id of the user
+     * @param name name of the user
+     * @param id id of the user
      * @return the newly created User
      */
     public User createUser(String name, int id) {
@@ -91,7 +91,7 @@ public class EntryManager implements Serializable {
 
     /**
      * Creates a user and appends it to the ArrayList. Uses a random id.
-     * @param name - name of the user
+     * @param name name of the user
      * @return the newly created User
      */
     public User createUser(String name) {

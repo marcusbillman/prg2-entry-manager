@@ -15,9 +15,9 @@ public class Controller {
 
     /**
      * Constructor for Controller.
-     * @param entryManager - MVC model that stores all state data, including entries and users
-     * @param view - MVC view that handles UI
-     * @param useDatabase - boolean that decides whether to use database functionality
+     * @param entryManager MVC model that stores all state data, including entries and users
+     * @param view MVC view that handles UI
+     * @param useDatabase boolean that decides whether to use database functionality
      */
     public Controller(EntryManager entryManager, View view, boolean useDatabase) {
         this.entryManager = entryManager;
@@ -34,7 +34,7 @@ public class Controller {
 
             /**
              * Exits the program safely when the window is closed by the user. Closes the database connection.
-             * @param e - event that invokes the listener (by default closing the window)
+             * @param e event that invokes the listener (by default closing the window)
              */
             public void windowClosing(WindowEvent e) {
                 databaseIO.closeConnection();
@@ -111,7 +111,7 @@ public class Controller {
     private class SaveListener implements ActionListener {
         /**
          * Opens a file chooser that lets the user choose a file to save to. Calls the save() method of FileIO.
-         * @param e - event that invokes the listener (by default a click of the Save button)
+         * @param e event that invokes the listener (by default a click of the Save button)
          */
         public void actionPerformed(ActionEvent e) {
             try {
@@ -141,7 +141,7 @@ public class Controller {
         /**
          * Opens a file chooser that lets the user choose a file to load from. Calls the load() method of FileIO and
          * updates the UI.
-         * @param e - event that invokes the listener (by default a click of the Load button)
+         * @param e event that invokes the listener (by default a click of the Load button)
          */
         public void actionPerformed(ActionEvent e) {
             try {
@@ -173,7 +173,7 @@ public class Controller {
         /**
          * Opens an input dialog that lets the user edit the content of the entry that was clicked. Modifies the entry,
          * updates the UI and updates the entry in the database.
-         * @param mouseEvent - event that invokes the listener (by default a double-click in the entries table)
+         * @param mouseEvent event that invokes the listener (by default a double-click in the entries table)
          */
         public void mouseClicked(MouseEvent mouseEvent) {
             try {

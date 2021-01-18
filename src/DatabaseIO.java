@@ -28,7 +28,7 @@ public class DatabaseIO {
 
     /**
      * Inserts an entry into the database.
-     * @param entry - the entry to insert
+     * @param entry the entry to insert
      */
     public void insertEntry(Entry entry) {
         try {
@@ -55,7 +55,7 @@ public class DatabaseIO {
 
     /**
      * Inserts an author (User) into the database
-     * @param author - the author (User) to insert
+     * @param author the author (User) to insert
      */
     public void insertAuthor(User author) {
         try {
@@ -79,7 +79,7 @@ public class DatabaseIO {
 
     /**
      * Updates the entry in the database that has the same id as the given entry.
-     * @param entry - pre-modified entry containing updated data to write to the database
+     * @param entry pre-modified entry containing updated data to write to the database
      */
     public void updateEntry(Entry entry) {
         try {
