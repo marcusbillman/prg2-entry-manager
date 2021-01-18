@@ -4,11 +4,21 @@ import java.awt.event.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Acts as an MVC controller that handles all communication between View (MVC view) and EntryManager (MVC model). Also
+ * holds an instance of DatabaseIO.
+ */
 public class Controller {
     private final View view;
     private EntryManager entryManager;
     private DatabaseIO databaseIO;
 
+    /**
+     * Constructor for Controller.
+     * @param entryManager - MVC model that stores all state data, including entries and users
+     * @param view - MVC view that handles UI
+     * @param useDatabase - boolean that decides whether to use database functionality
+     */
     public Controller(EntryManager entryManager, View view, boolean useDatabase) {
         this.entryManager = entryManager;
         this.view = view;
@@ -22,6 +32,10 @@ public class Controller {
             public void windowOpened(WindowEvent e) {
             }
 
+            /**
+             * Exits the program safely when the window is closed by the user. Closes the database connection.
+             * @param e - event that invokes the listener (by default closing the window)
+             */
             public void windowClosing(WindowEvent e) {
                 databaseIO.closeConnection();
                 System.out.println("Bye!");
@@ -66,6 +80,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Custom listener based on ActionListener that, when invoked, creates an entry and, if database is used, inserts
+     * the entry into the database.
+     */
     private class CreateEntryListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
@@ -86,7 +104,15 @@ public class Controller {
         }
     }
 
+    /**
+     * Custom listener based on ActionListener that, when invoked, lets the user save the current state of EntryManager
+     * to a file.
+     */
     private class SaveListener implements ActionListener {
+        /**
+         * Opens a file chooser that lets the user choose a file to save to. Calls the save() method of FileIO.
+         * @param e - event that invokes the listener (by default a click of the Save button)
+         */
         public void actionPerformed(ActionEvent e) {
             try {
                 JFileChooser fileChooser = new JFileChooser();
@@ -107,7 +133,16 @@ public class Controller {
         }
     }
 
+    /**
+     * Custom listener based on ActionListener that, when invoked, lets the user restore the state of EntryManager from
+     * a file.
+     */
     private class LoadListener implements ActionListener {
+        /**
+         * Opens a file chooser that lets the user choose a file to load from. Calls the load() method of FileIO and
+         * updates the UI.
+         * @param e - event that invokes the listener (by default a click of the Load button)
+         */
         public void actionPerformed(ActionEvent e) {
             try {
                 JFileChooser fileChooser = new JFileChooser();
@@ -131,7 +166,15 @@ public class Controller {
         }
     }
 
+    /**
+     * Custom listener based on ActionListener that, when invoked, lets the user edit an entry through the UI.
+     */
     private class TableClickListener implements MouseListener {
+        /**
+         * Opens an input dialog that lets the user edit the content of the entry that was clicked. Modifies the entry,
+         * updates the UI and updates the entry in the database.
+         * @param mouseEvent - event that invokes the listener (by default a double-click in the entries table)
+         */
         public void mouseClicked(MouseEvent mouseEvent) {
             try {
                 JTable table = (JTable) mouseEvent.getSource();
@@ -172,6 +215,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Parses the contents of the author input field and finds the corresponding User in EntryManager. If no User is
+     * found, a new one gets created.
+     * @return corresponding User
+     */
     private User parseAuthorUser() {
         String authorRaw = view.getAuthorName();
         if (authorRaw == null || authorRaw.length() < 1) {
