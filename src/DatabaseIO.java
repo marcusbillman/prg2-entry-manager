@@ -1,8 +1,15 @@
 import java.sql.*;
 
+/**
+ * Handles integration with a MySQL database using the Java MySQL connector.
+ */
 public class DatabaseIO {
     private Connection connection;
 
+    /**
+     * Constructor for DatabaseIO. Sets up the connection to the database using the credentials in the DatabaseLoginData
+     * class.
+     */
     public DatabaseIO() {
         try {
             // Set up connection to database
@@ -19,6 +26,10 @@ public class DatabaseIO {
 
     }
 
+    /**
+     * Inserts an entry into the database.
+     * @param entry - the entry to insert
+     */
     public void insertEntry(Entry entry) {
         try {
             // Create template query
@@ -42,6 +53,10 @@ public class DatabaseIO {
         }
     }
 
+    /**
+     * Inserts an author (User) into the database
+     * @param author - the author (User) to insert
+     */
     public void insertAuthor(User author) {
         try {
             // Create template query
@@ -62,6 +77,10 @@ public class DatabaseIO {
         }
     }
 
+    /**
+     * Updates the entry in the database that has the same id as the given entry.
+     * @param entry - pre-modified entry containing updated data to write to the database
+     */
     public void updateEntry(Entry entry) {
         try {
             // Create template query
@@ -83,6 +102,10 @@ public class DatabaseIO {
         }
     }
 
+    /**
+     * Restores the state of EntryManager from the data in the database.
+     * @return EntryManager created from data in the database
+     */
     public EntryManager load() {
         EntryManager entryManager = new EntryManager();
 
@@ -136,6 +159,9 @@ public class DatabaseIO {
         return entryManager;
     }
 
+    /**
+     * Closes the database connection safely.
+     */
     public void closeConnection() {
         try {
             connection.close();
