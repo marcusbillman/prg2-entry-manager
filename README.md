@@ -2,6 +2,8 @@
 
 Ett enkelt grafiskt system för att spara loggboksinlägg till fil eller databas.
 
+![Screenshot](https://github.com/marcusbillman/prg2-entry-manager/blob/master/screenshot.png?raw=true)
+
 ☕ [Javadoc](https://marcusbillman.github.io/prg2-entry-manager/) (GitHub Pages)
 
 📑 [Post mortem](https://github.com/marcusbillman/prg2-entry-manager/wiki/Post-mortem) (GitHub Wiki)
